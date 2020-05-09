@@ -19,6 +19,13 @@ class Asignatura extends CI_Model
 		return $resultados;
 	}
 
+	function obtenerCurso($refCurso)
+	{
+		$query = "SELECT * FROM Curso WHERE curso.id = '$refCurso'";
+		$resultados = $this->db->query($query)->result();
+		return $resultados;
+	}
+
 	function agregarAsignatura($nombre, $horasSemanales, $refCurso)
 	{
 		$data = array(

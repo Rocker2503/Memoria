@@ -24,37 +24,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </section>
       </div>
     </div>
+      
+
       <div class="container">
-    	   <div class="row">
-          <div class="col-md-4">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="https://image.flaticon.com/icons/svg/782/782760.svg" class="card-img-top"  height="150" width="150">
-              <div class="card-body">
-                <h5 class="card-title">Evaluaciones</h5>
-                <a href="#" class="btn btn-primary">Ver</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="https://image.flaticon.com/icons/svg/782/782744.svg" class="card-img-top"  height="150" width="150">
+        <div class="card-deck" style="margin-bottom: 10px">
+              <div class="card bg-light text-center" style="width: 20rem;">
+                <img src="https://image.flaticon.com/icons/svg/782/782760.svg" class="card-img-top" height="80" width="80">
+                <div class="card-body">
+                  <h5 class="card-title">Evaluaciones</h5>
+                  <a href="<?php echo base_url()?>Evaluaciones/cargarEvaluaciones/<?php echo $id;?>" class="btn btn-primary">Ver</a>
+                </div>
+              </div> 
+
+            <div class="card bg-light text-center" style="width: 20rem;">
+              <img src="https://image.flaticon.com/icons/svg/782/782744.svg" class="card-img-top" height="80" width="80">
               <div class="card-body">
                 <h5 class="card-title">Asistencia</h5>
-                <a href="#" class="btn btn-primary">Ver</a>
+                <a href="<?php echo base_url()?>Asistencias/listarAlumnos/<?php echo $id;?>" class="btn btn-primary">Ver</a>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-             <div class="card text-center" style="width: 18rem;">
-                <img src="https://image.flaticon.com/icons/svg/782/782741.svg" class="card-img-top"  height="150" width="150">
+            <div class="card bg-light text-center" style="width: 20rem;">
+                <img src="https://image.flaticon.com/icons/svg/782/782741.svg" class="card-img-top" height="80" width="80">
                 <div class="card-body">
                   <h5 class="card-title">Observaciones</h5>
                   <a href="<?php echo base_url()?>Observaciones/listarAlumnos/<?php echo $id; ?>" class="btn btn-primary">Ver</a>
                 </div>
               </div>
-          </div>
+
+            <div class="card bg-light text-center" style="width: 20rem;">
+              <img src="https://image.flaticon.com/icons/svg/2898/2898278.svg" class="card-img-top" height="80" width="80">
+              <div class="card-body">
+                <h5 class="card-title">Actividades</h5>
+                <a href="#" class="btn btn-primary">Ver</a>
+              </div>
+            </div>
+        </div>
       </div>
-    </div>
 
 </body>
 </html>

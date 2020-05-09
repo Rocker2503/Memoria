@@ -15,6 +15,7 @@ class Apoderados extends CI_Controller
 	function cargarApoderado($refAlumno)
 	{
 		$data['apoderados'] = $this->Apoderado->cargarApoderado($refAlumno);
+		$data['alumno'] = $this->Apoderado->obtenerAlumno($refAlumno);
 		$data['refAlumno'] = $refAlumno;
 		$this->load->view('header');
 		$this->load->view('Apoderados',$data);

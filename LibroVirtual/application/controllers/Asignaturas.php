@@ -14,6 +14,7 @@ class Asignaturas extends CI_Controller
 	function cargarAsignaturas($refCurso)
 	{
 		$data['asignaturas'] = $this->Asignatura->cargarAsignaturas($refCurso);
+		$data['curso'] = $this->Asignatura->obtenerCurso($refCurso);
 		$data['refCurso'] = $refCurso;
 		$this->load->view('header');
 		$this->load->view('asignaturas', $data);

@@ -16,6 +16,13 @@ class Alumno extends CI_Model
 		return $resultados;
 	}
 
+	function obtenerCurso($refCurso)
+	{
+		$query = "SELECT * FROM Curso WHERE curso.id = '$refCurso'";
+		$resultados = $this->db->query($query)->result();
+		return $resultados;
+	}
+
 	function agregarAlumno($apellidopaterno,$apellidomaterno,$nombres,$rut,$sexo,$fechanacimiento,$direccion,$comuna,$procedencia,$refcurso)
 	{
 		$data = array(

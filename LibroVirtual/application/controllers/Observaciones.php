@@ -15,18 +15,14 @@ class Observaciones extends CI_Controller
 		$data['alumnos'] = $this->Observacion->listarAlumnos($id);
 		$data['refAsignatura'] = $id;
 		$this->load->view('header');
-		$this->load->view('ListaAlumnos',$data);
+		$this->load->view('Observaciones',$data);
 	}
 
-	function verHojaVida($refAlumno,$refAsignatura)
+	function ObtenerAnotaciones()
 	{
-		$data['asignatura'] = $refAsignatura;
-		$data['refAlumno'] = $refAlumno;
-		$data['observaciones'] = $this->Observacion->obtenerObservaciones($refAlumno);
-		$data['alumno'] = $this->Observacion->obtenerAlumno($refAlumno);
-		
-		$this->load->view('header');
-		$this->load->view('Observaciones',$data);
+		$refAlumno = $this->input->post('refalumno');
+		$data = $this->Observacion->obtenerObservaciones($refAlumno);
+		echo json_encode($data);
 	}
 
 	function obtenerDatos($refAsignatura)
@@ -43,6 +39,23 @@ class Observaciones extends CI_Controller
 		$tipo = $this->input->post('tipo');
 		$comentario = $this->input->post('comentario');
 		$this->Observacion->agregarObservacion($refAsignatura,$refAlumno,$fecha,$tipo,$comentario);
+	}
+
+	function EditAjax($id)
+	{
+		$data = $this->Observacion->obtenerObservacion($id);
+		echo json_encode($data);
+	}
+
+	function editarObservacion()
+	{
+		$id = $this->input->post('id');
+		$refAsignatura = $this->input->post('refasignatura');
+		$refAlumno = $this->input->post('refalumno');
+		$fecha = $this->input->post('fecha');
+		$tipo = $this->input->post('tipo');
+		$comentario = $this->input->post('comentario');
+		$this->Observacion->editarObservacion($id,$refAsignatura,$refAlumno,$fecha,$tipo,$comentario);
 	}
 
 	function eliminarObservacion()

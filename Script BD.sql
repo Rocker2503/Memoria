@@ -48,3 +48,37 @@ CREATE TABLE OBSERVACION(
 	tipo int NOT NULL,
 	comentario text NOT NULL
 );
+
+CREATE TABLE ASISTENCIA(
+	refAlumno int NOT NULL REFERENCES alumno(id) ON DELETE CASCADE,
+	asistencia int NOT NULL,
+	fecha DATE NOT NULL
+);
+
+CREATE TABLE EVALUACION(
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nombre varchar(32) NOT NULL,
+	fecha DATE NOT NULL,
+	refAsignatura int NOT NULL REFERENCES asignatura(id) ON DELETE CASCADE
+);
+
+CREATE TABLE CALIFICAREVALUACION(
+	refAlumno int NOT NULL REFERENCES alumno(id) ON DELETE CASCADE,
+	refAsignatura int NOT NULL REFERENCES asignatura(id) ON DELETE CASCADE,
+	refEvaluacion int NOT NULL REFERENCES evaluacion(id) ON DELETE CASCADE,
+	nota double(2,1) NOT NULL
+);
+
+CREATE TABLE PERIODO(
+	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	inicio DATE NOT NULL,
+	fin DATE NOT NULL,
+	numDias int NOT NULL
+);
+
+CREATE TABLE PROMEDIOASIGNATURA(
+	refAlumno int NOT NULL REFERENCES alumno(id) ON DELETE CASCADE,
+	refAsignatura int NOT NULL REFERENCES asignatura(id) ON DELETE CASCADE,
+	refPeriodo int NOT NULL REFERENCES periodo(id) ON DELETE CASCADE,
+	nota double(2,1) NOT NULL
+);

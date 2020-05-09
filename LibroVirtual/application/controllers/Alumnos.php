@@ -14,6 +14,7 @@ class Alumnos extends CI_Controller
 	function cargarAlumnos($refCurso)
 	{
 		$data['alumnos'] = $this->Alumno->cargarAlumnos($refCurso);
+		$data['curso'] = $this->Alumno->obtenerCurso($refCurso);
 		$data['refCurso'] = $refCurso;
 		$this->load->view('header');
 		$this->load->view('alumnos',$data);

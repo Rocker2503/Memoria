@@ -7,16 +7,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Cursos</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </style>
 
 </head>
 <body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 	
 	<div class="main">
@@ -28,23 +28,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 
 	<div class="container">
-		<section class="py-2">
-			<a class="btn btn-outline-primary" onclick="agregarCurso()">Agregar Curso</a>
-		</section>
+		<div class="container row" style="margin-bottom:10px">
+			<button class="btn btn-success" onclick="agregarCurso()"><i class="fa fa-plus"></i> Agregar</button>
+		</div>
 	</div>
 
 	
 		<div>
 		    <div class="container">
-		    	<div id="listado"> 
+		    	<div class="row" id="listado"> 
 					<?php $i=0; foreach($cursos as $row): ?>
-					<div class="card bg-light">
-							<div class="card-body">
-							<h5 class="card-title"><?php echo "{$row->nombre} {$row->letra}";  ?></h5>
-							<a class="btn btn-success" href="<?php echo base_url();?>asignaturas/cargarAsignaturas/<?php echo $row->id ?>">Ver Info</a>
-							<button class="btn btn-primary" onclick="editarCurso(<?= $row->id?>)">Editar</button>
-							<button class="btn btn-danger" onclick="eliminarCurso(<?= $row->id?>)">Eliminar</button>
+					<div class="col-4" style="margin-bottom:10px">
+						<div class="card flex-row flex-wrap bg-light">
+							<div class="card-header border-1">
+								<img src="https://image.flaticon.com/icons/svg/1258/1258311.svg" class="card-img-top" height="60" width="60">
 							</div>
+							<div class="card-block px-2">
+								<a href="<?php echo base_url()?>Asignaturas/cargarAsignaturas/<?php echo $row->id ?>"><h5 class="card-title"><?php echo "{$row->nombre} {$row->letra}";?></h5></a>
+								<div style="margin-bottom: 5px">
+									<button class="btn btn-primary" onclick="editarCurso(<?=$row->id?>)"><i class="fa fa-pencil"></i></button>
+									<button class="btn btn-danger" onclick="eliminarCurso(<?=$row->id?>)"><i class="fa fa-close"></i></button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<? $i++; endforeach;?>
 		    	</div>
@@ -156,6 +162,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var nombre = $("#Nombre").val();
 		var letra = $("#Letra").val();
 		var anio = $("#Anio").val();
+
+		if(nivel == "" || nombre == "" || letra == "" || anio == "")
+		{
+			alert("Todos los campos deben estar completos");
+			$('#btnSave').text('Guardar');
+			$('#btnSave').attr('disabled',false);
+			return;
+		}
 
 		if(save_method == "Add"){
 			base_url = base_url + "cursos/agregarCurso";

@@ -16,6 +16,13 @@ class Apoderado extends CI_Model
 		return $resultados;
 	}
 
+	function obtenerAlumno($refAlumno)
+	{
+		$query = "SELECT * FROM Alumno WHERE alumno.id = '$refAlumno'";
+		$resultados = $this->db->query($query)->result();
+		return $resultados;
+	}
+
 	function agregarApoderado($nivelpadre,$nivelmadre,$nombre,$rut,$direccion,$telefono,$email,$emergencia,$refalumno)
 	{
 		$data = array(

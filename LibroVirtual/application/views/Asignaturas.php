@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>Asignaturas</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,29 +18,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="main">
 		<div class="container">
 			<div class="py-2">
-				<h2>Lista de Asignaturas</h2>
+				<?php foreach($curso as $row): ?>
+				<h2> Asignaturas de <?php echo "{$row->nombre} {$row->letra}"; ?></h2>
+				<?php endforeach;?>
 			</div>
 		</div>
 
 		<div class="container">
 			<div class="py-2">
-				<a class="btn btn-outline-primary" onclick="agregarAsignatura(<?= $refCurso; ?>)">Agregar Asignatura</a>
-				<a class="btn btn-outline-success" href="<?php echo base_url();?>alumnos/cargarAlumnos/<?php echo $refCurso?>">Ver Alumnos</a>
+				<button class="btn btn-success" onclick="agregarAsignatura(<?=$refCurso;?>)"><i class="fa fa-plus"></i> Asignatura</button>
+				<a class="btn btn-primary" href="<?php echo base_url();?>alumnos/cargarAlumnos/<?php echo $refCurso?>"><i class="fa fa-eye"></i> Alumnos</a>
 			</div>
 		</div>
 
 
 		<div class="container">
-			<div id="listado">
+			<div class="row" id="listado">
 				<?php foreach ($asignaturas as $row): ?>
-					<div class="card bg-light">
-						<div class="card-body">
-							<h5 class="card-title"><?php echo "{$row->nombre}";  ?></h5>
-							<p class="card-text"> Horas semanales: <?php echo "{$row->horassemanales}";?> </p>
-							<a class="btn btn-success" href="<?php echo base_url();?>asignaturas/detalles/<?php echo $row->id; ?>">Ver Info</a>
-							<button class="btn btn-primary" onclick="editarAsignatura(<?= $row->id?>)">Editar</button>
-							<button class="btn btn-danger" onclick="eliminarAsignatura(<?= $row->id?>)">Eliminar</button>
+					<div class="col-4">
+					<div class="card flex-row flex-wrap bg-light">
+						<div class="card-header border-1">
+							<img src="https://image.flaticon.com/icons/svg/2196/2196561.svg" class="card-img-top" height="60" width="60">
 						</div>
+						<div class="card-block px-2">
+							<a href="<?php echo base_url();?>asignaturas/detalles/<?php echo $row->id; ?>"><h5><?php echo "{$row->nombre}";?></h5></a>
+							<p> Horas semanales: <?php echo $row->horassemanales;?></p>
+							<div style="margin-bottom: 5px">
+							<button class="btn btn-primary" onclick="editarAsignatura(<?= $row->id?>)"><i class="fa fa-pencil"></i></button>
+							<button class="btn btn-danger" onclick="eliminarAsignatura(<?= $row->id?>)"><i class="fa fa-close"></i></button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<?php endforeach ?>
 			</div>
@@ -129,7 +137,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var horasSemanales = $('#HorasSemanales').val();
 		var refCurso = $('#RefCurso').val();
 
-		console.log(id,nombre,horasSemanales,refCurso);
+		if(nombre == "" || horasSemanales == "")
+		{
+			alert("Todos los campos deben estar completos");
+			$('#btnSave').text('Guardar');
+			$('#btnSave').attr('disabled',false);
+			return;
+		}
 
 		if(save_method == "Add"){
 			base_url = base_url + "Asignaturas/agregarAsignatura";

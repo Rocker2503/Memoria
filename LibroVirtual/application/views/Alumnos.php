@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Alumnos</title>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -19,13 +20,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="main">
 		<div class="container">
 			<div class="py-2">
-				<h2>Lista de Alumnos</h2>
+				<?php foreach($curso as $row):?>
+				<h2>Lista de Alumnos <?php echo "{$row->nombre} {$row->letra}"; ?></h2>
+				<?php endforeach;?>
 			</div>
 		</div>
 
 		<div class="container">
 			<div class="py-2">
-				<a class="btn btn-outline-primary" onclick="agregarAlumno(<?= $refCurso; ?>)">Agregar Alumno</a>
+				<button class="btn btn-success" onclick="agregarAlumno(<?= $refCurso; ?>)"><i class="fa fa-plus"></i> Alumno</button>
 			</div>
 		</div>
 
@@ -46,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td> <?php echo $row->apellidoMaterno; ?> </td>
 							<td> <?php echo $row->nombres; ?> </td>
 							<td>
-								<a class="btn btn-success" href="<?php echo base_url()?>apoderados/cargarApoderado/<?php echo $row->id?>">Apoderado</a>
-								<button class="btn btn-primary" onclick="editarAlumno(<?=$row->id?>)">Editar</button>
-								<button class="btn btn-danger" onclick="eliminarAlumno(<?=$row->id?>)">Eliminar</button>
+								<a class="btn btn-success" href="<?php echo base_url()?>apoderados/cargarApoderado/<?php echo $row->id?>"><i class="fa fa-phone"></i></a>
+								<button class="btn btn-primary" onclick="editarAlumno(<?=$row->id?>)"><i class="fa fa-pencil"></i></button>
+								<button class="btn btn-danger" onclick="eliminarAlumno(<?=$row->id?>)"><i class="fa fa-close"></i></button>
 							</td>
 						</tr>
 					<?php endforeach;?>
@@ -182,7 +185,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var procedencia = $('#Procedencia').val();
 		var refcurso = $('#RefCurso').val();
 
-		console.log(refcurso);
+		if(apellidopaterno == "" || apellidomaterno == "" || nombres == "" || rut == "" || sexo == "" || fechanacimiento == "" || direccion == "" || comuna == "" || procedencia == "")
+		{
+			alert("Todos los campos deben estar completos");
+			$('#btnSave').text('Guardar');
+			$('#btnSave').attr('disabled',false);
+			return;
+		}
 
 		if(save_method == "Add"){
 			base_url = base_url + "Alumnos/agregarAlumno";

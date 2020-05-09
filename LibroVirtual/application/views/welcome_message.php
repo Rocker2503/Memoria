@@ -4,86 +4,115 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Libro Virtual</title>
 
-	<style type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
 
+    <style type="text/css">
 	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
+		color: #4e4e4e;
+		background: #ffffff;
+		font-family: 'Roboto', sans-serif;
 	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
+    .form-control {
+		background: #f2f2f2;
+        font-size: 16px;
+		border-color: transparent;
+		box-shadow: none !important;
 	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
+	.form-control:focus {
+		border-color: #91d5a8;
+        background: #e9f5ee;
 	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
+    .form-control, .btn {        
+        border-radius: 2px;
+    }
+	.login-form {
+		width: 380px;
+		margin: 0 auto;
 	}
-
-	#body {
-		margin: 0 15px 0 15px;
+    .login-form h2 {
+        margin: 0;
+        padding: 30px 0;
+        font-size: 34px;
+    }
+	.login-form .avatar {
+		margin: 0 auto 30px;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #4aba70;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
+	.login-form .avatar img {
+		width: 100%;
 	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
+    .login-form form {
+		color: #7a7a7a;
+		border-radius: 4px;
+    	margin-bottom: 20px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;		
+    }
+    .login-form .btn {
+		font-size: 16px;
+		line-height: 26px;
+		min-width: 120px;
+        font-weight: bold;
+		background: #4aba70;
+		border: none;		
+    }
+	.login-form .btn:hover, .login-form .btn:focus{
+		background: #40aa65;
+        outline: none !important;
+	}
+	.checkbox-inline {
+		margin-top: 14px;
+	}
+	.checkbox-inline input {
+		margin-top: 3px;
+	}	
+	.login-form a:hover {
+		text-decoration: underline;
+	}
+	.hint-text {
+		color: #999;
+        text-align: center;
+		padding-bottom: 15px;
 	}
 	</style>
 </head>
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+	<div class="login-form">
+		<h2 class="text-center">Libro Virtual</h2>
+	    <form action="/examples/actions/confirmation.php" method="post">
+			<div class="avatar">
+				<img src="https://image.flaticon.com/icons/png/512/1077/1077114.png" alt="Avatar">
+			</div>           
+	        <div class="form-group">
+	        	<input type="text" class="form-control input-lg" name="username" placeholder="Username" required="required">	
+	        </div>
+			<div class="form-group">
+	            <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="required">
+	        </div>        
+	        <div class="form-group clearfix">
+				<label class="pull-left checkbox-inline"><input type="checkbox"> Recordarme</label>
+	            <a href="<?php echo base_url()?>Cursos/index" class="btn btn-success pull-right">Iniciar Sesión</a>
+	        </div>		
+	    </form>
 	</div>
-
-	<a href="<?php echo base_url()?>Cursos">aaaa</a>
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 
 </body>

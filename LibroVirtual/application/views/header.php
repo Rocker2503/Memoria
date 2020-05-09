@@ -41,12 +41,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>  
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item pull-right my-2 my-lg-0">
+        <a class="nav-link" href="#">Cerrar Sesión</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
+    
   </div>
 </nav>
 	</header>

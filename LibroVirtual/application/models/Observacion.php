@@ -59,6 +59,30 @@ class Observacion extends CI_Model
 
 		$this->db->insert('observacion',$data);
 	}
+	function obtenerObservacion($id)
+	{
+		$query = "SELECT observacion.id, observacion.refAsignatura, observacion.refAlumno, observacion.fecha, observacion.tipo, observacion.comentario, asignatura.nombre 
+			FROM observacion, asignatura 
+			WHERE observacion.id = '$id'
+			AND observacion.refAsignatura = asignatura.id";
+		$resultados = $this->db->query($query)->row();
+		return $resultados;
+	}
+
+	function editarObservacion($id,$refAsignatura,$refAlumno,$fecha,$tipo,$comentario)
+	{
+		$data = array(
+			'id' => $id,
+			'refAsignatura' => $refAsignatura,
+			'refAlumno' => $refAlumno,
+			'fecha' => $fecha,
+			'tipo' => $tipo,
+			'comentario' => $comentario
+		);
+
+		$this->db->where('id',$id);
+		$this->db->update('Observacion',$data);
+	}
 
 	function eliminarObservacion($id)
 	{
